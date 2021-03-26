@@ -1,6 +1,5 @@
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", ()=>{
-    onTimePathFinding = false;
     clear("wall");
     clear("visited")
     clear("path")
@@ -28,6 +27,5 @@ function startSearch(){
     clearButton.disabled = true;
     screenActivity = false;
     bfs()
-    onTimePathFinding = true;
 }
 

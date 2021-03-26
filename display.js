@@ -1,5 +1,4 @@
 var screenActivity = true;
-var onTimePathFinding = false;
 // digning grid
 const body = document.querySelector("body");
 const widthOfCell = 25;
@@ -58,9 +57,6 @@ cellMatrix.forEach((row) => {
                 startPoint.classList.remove(previousStratClass)
                 startPoint.classList.add("start");
                 startPoint.addEventListener("mousedown", startPointMouseDownFunction)
-                if(onTimePathFinding) {
-                    startSearch()
-                }
             }
         });
     });
