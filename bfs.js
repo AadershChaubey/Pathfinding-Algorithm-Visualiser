@@ -7,11 +7,11 @@ function bfs(){
     const visited = createVisitedArray();
     const parentMatrix = createParentArray();
     const parentArray = [];
-
+    parentArray.push(-1);
     const vistedAnimation = [];
     startPoint.classList.remove("wall");
     endPoint.classList.remove("wall");
-    parentArray.push(-1);
+    
     while(q.length != 0){
         let curr = q.shift();
         let x = parseInt(curr[0]);
@@ -22,7 +22,7 @@ function bfs(){
             vistedAnimation.push(cellMatrix[x][y])
             parentMatrix[x][y] = parentCurr
             if(cellMatrix[x][y] === endPoint){
-                console.log("mill gaya")
+                console.log("mill gaya" +  " bfs")
                 AnimateSearch(vistedAnimation, parentMatrix, [x, y], true);
                 return;
             }
@@ -36,7 +36,7 @@ function bfs(){
             parentArray.push([x, y]);
         }
     }
-    AnimateSearch(vistedAnimation, parentMatrix, [0, 0], false);
+    AnimateSearch(vistedAnimation, parentMatrix, [-1, -1], false);
 }
 
 

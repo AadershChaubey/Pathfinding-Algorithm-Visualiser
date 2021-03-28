@@ -96,7 +96,12 @@ cellMatrix.forEach((row) => {
 
 var containerMouseDown = false;
 container.addEventListener("mousedown", () => {
-if(!startMouseDown && !endMouseDown)containerMouseDown = true;
+    if(!startMouseDown && !endMouseDown)containerMouseDown = true;
+});
+
+var containerWdown = false;
+body.addEventListener("keydown", (key) => {
+    if(key.keyCode === 87)containerWdown = true;
 });
 
 body.addEventListener("mouseup", () => {
@@ -105,35 +110,57 @@ body.addEventListener("mouseup", () => {
     endMouseDown = false;
 });
 
-var cell = null;
+body.addEventListener("keyup", (key)=>{
+    if(key.keyCode === 87)containerWdown = false;
+})
+
+
 cellMatrix.forEach((row) => {
-    row.forEach((cellc) => {
-        cellc.addEventListener("mouseover", () => {
-        if (screenActivity && containerMouseDown) {
-            cell = cellc;
-            changeCellColor();
-            cell = null;
+    row.forEach((cell) => {
+        let cal = cell;
+        cell.addEventListener("mouseover", () => {
+        if (screenActivity && containerMouseDown && !containerWdown && cell != startPoint && cell != endPoint) {
+            changeCellColor(cal, "wall");
         }
         });
 
-        cellc.addEventListener("click", () => {
-            if(screenActivity && cellc != startPoint && cellc != endPoint){
-                cell = cellc;
-                changeCellColor();
-                cell = null;
+        cell.addEventListener("click", () => {
+            if(screenActivity && !containerWdown && cell != startPoint && cell != endPoint){
+                changeCellColor(cal, "wall");
             }
         });
     });
 });
 
-function changeCellColor() {
+
+
+//  adding weights
+cellMatrix.forEach((row) => {
+    row.forEach((cell) => {
+        let cal = cell;
+        cell.addEventListener("mouseover", () => {
+            let cal = cell;
+            if (screenActivity && containerMouseDown && cell != startPoint && cell != endPoint && containerWdown) {
+                changeCellColor(cal, "weight");
+            }
+        });
+
+        cell.addEventListener("click", () => {
+            if (screenActivity && cell != startPoint && cell != endPoint && containerWdown) {
+                changeCellColor(cal, "weight");
+            }
+        });
+    });
+});
+
+function changeCellColor(cell, classs) {
     // console.log(cell.classList);
-    if (cell.classList.contains("Empty-cell")) {
-        cell.classList.remove("Empty-cell");
-        cell.classList.add("wall");
-    } else if(cell.classList.contains("wall")){
-        cell.classList.remove("wall");
+    if(cell.classList.contains(classs)){
+        cell.classList.remove(classs);
         cell.classList.add("Empty-cell");
+    } else {
+        cell.classList.remove("Empty-cell", "visited", "path");
+        cell.classList.add(classs);
     }
     // console.log(cell.classList);
 }

@@ -3,6 +3,10 @@ clearButton.addEventListener("click", ()=>{
     clear("wall");
     clear("visited")
     clear("path")
+    clear("weight")
+    clear("visited-weight")
+    previousStratClass = null;
+    previousEndClass = null;
 } )
 
 
@@ -20,12 +24,14 @@ function clear(classes){
     })
 }
 
+var bf = false;
 function startSearch(){
     clear("visited")
     clear("path")
     findPathButton.disabled = true;
     clearButton.disabled = true;
     screenActivity = false;
-    bfs()
+    if(!bf)Djkstra();
+    else bfs();
 }
 

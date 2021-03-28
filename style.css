@@ -15,7 +15,13 @@ body {
 }
 
 .wall {
-  background: rgb(42, 38, 56);
+  background: rgb(14, 13, 17);
+  border: none;
+  animation: wall-animation 0.3s;
+}
+
+.weight {
+  background-image: url("image/weight-hanging-solid.svg");
   border: none;
   animation: wall-animation 0.3s;
 }
@@ -35,9 +41,21 @@ body {
 }
 
 .visited {
-  background: rgb(167, 30, 167);
+  background-color: rgb(167, 30, 167);
   border: rgb(219, 144, 203) 0.5px solid;
   animation: visited-animation 1.7s forwards;
+}
+
+.visited-weight {
+  background-image: url("image/weight-hanging-solid.svg");
+  background-color: rgb(238, 144, 238);
+  border: none;
+  animation: wall-animation 0.3s;
+}
+
+.Algorithms {
+  display: flex;
+  align-items: stretch;
 }
 
 td {

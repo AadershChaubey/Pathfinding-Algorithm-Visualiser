@@ -70,8 +70,11 @@ function AnimatePath(path){
 
 
 function AnimateSearch(Array, parent, [a, b], wannaPath){
+   
     let miliSec = 20;
+    console.log(Array.length)
     if(Array.length <= 2){
+         console.log("clearButton")
         findPathButton.disabled = false;
         clearButton.disabled = false;
         screenActivity = true;
@@ -93,8 +96,25 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                 screenActivity = true;
             }
         }
-        Array[i].classList.remove("Empty-cell");
-        Array[i].classList.add("visited")
+        if(Array[i].classList.contains("weight")){
+            Array[i].classList.add("visited-weight")
+        }else {
+            Array[i].classList.remove("Empty-cell");
+            Array[i].classList.add("visited")
+        }
         i++;
     }, miliSec);
+}
+
+
+function createWeightedArray(){
+    const Array = [];
+    for(let i = 0; i < numbersOfRows; i++){
+        const rows = [];
+        for(let j = 0;j < numberOfCols; j++){
+            rows.push(Infinity);
+        }
+        Array.push(rows);
+    }
+    return Array;
 }
