@@ -71,7 +71,6 @@ function Djkstra(){
         if(found){
             console.log("mill gaya" + " Dijkstras")
             vistedAnimation.push([x1, y1])
-            // console.log(vistedAnimation.length)
             AnimateSearch(vistedAnimation, parentMatrix, [x1, y1], true);
             return;
         }

@@ -17,13 +17,15 @@ body {
 .wall {
   background: rgb(14, 13, 17);
   border: none;
-  animation: wall-animation 0.3s;
+  animation: wall-animation 0.1s;
+  /* .3s */
 }
 
 .weight {
   background-image: url("image/weight-hanging-solid.svg");
   border: none;
-  animation: wall-animation 0.3s;
+  animation: wall-animation 0.1s;
+  /* .3s */
 }
 
 .start {
@@ -38,12 +40,14 @@ body {
 .path {
   background: rgb(230, 230, 84);
   animation: wall-animation 0.3s;
+  /* .3s */
 }
 
 .visited {
   background-color: rgb(167, 30, 167);
   border: rgb(219, 144, 203) 0.5px solid;
   animation: visited-animation 1.7s forwards;
+  /* 1.7s */
 }
 
 .visited-weight {
@@ -51,11 +55,29 @@ body {
   background-color: rgb(238, 144, 238);
   border: none;
   animation: wall-animation 0.3s;
+  /* .3s */
 }
 
-.Algorithms {
-  display: flex;
-  align-items: stretch;
+.algorithms {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 150px;
+  background: rgb(118, 118, 223);
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: rgb(245, 224, 224);
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0px 0px 3px 0px rgb(65, 63, 63);
+}
+
+.algorithms p {
+  margin-right: 10px;
+}
+
+.algorithms:hover {
+  background: rgb(95, 95, 231);
 }
 
 td {
@@ -88,6 +110,45 @@ table {
   border-radius: 5px;
   color: rgb(245, 224, 224);
   cursor: pointer;
+  box-shadow: 0px 0px 3px 0px rgb(65, 63, 63);
+}
+
+.btn:hover {
+  background: rgb(95, 95, 231);
+}
+
+.algo-list {
+  background: rgb(118, 118, 223);
+  list-style: none;
+  color: rgb(245, 224, 224);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  border-radius: 5px;
+  margin-top: 8px;
+  line-height: 1.7;
+  cursor: pointer;
+  position: absolute;
+  transform: scale3d(1, 0, 1);
+  transform-origin: top;
+  box-shadow: 0px 0px 2px 0px rgb(65, 63, 63);
+  transition: transform 0.3s;
+}
+
+.algo-list li:after {
+  content: "";
+  height: 0.5px;
+  background: rgb(44, 41, 41);
+  display: block;
+  width: 0;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.algo-list li:hover::after {
+  width: 100%;
 }
 
 /* Animations */

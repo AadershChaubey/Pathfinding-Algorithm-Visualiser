@@ -51,7 +51,8 @@ function getThePath(parent, endCordinate){
 }
 
 function AnimatePath(path){
-    let miliSec = 20;
+    console.log(path.length);
+    let miliSec = 0;
     let i = path.length - 1;
     const animate = setInterval(() => {
         if(i < 0){
@@ -71,10 +72,8 @@ function AnimatePath(path){
 
 function AnimateSearch(Array, parent, [a, b], wannaPath){
    
-    let miliSec = 20;
-    console.log(Array.length)
+    let miliSec = 0;
     if(Array.length <= 2){
-         console.log("clearButton")
         findPathButton.disabled = false;
         clearButton.disabled = false;
         screenActivity = true;
