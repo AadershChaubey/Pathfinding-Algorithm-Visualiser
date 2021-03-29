@@ -37,6 +37,11 @@ function startSearch(){
     let text = chooseAlgo.innerText;
     if(text == "BFS")bfs();
     else if(text == "Dijkstra's") Djkstra();
+    else{
+        findPathButton.disabled = false;
+        clearButton.disabled = false;
+        screenActivity = true;
+    }
 }
 
 
