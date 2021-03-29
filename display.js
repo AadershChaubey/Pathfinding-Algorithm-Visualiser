@@ -173,7 +173,7 @@ function changeCellColor(cell, classs) {
         cell.classList.remove(classs);
         cell.classList.add("Empty-cell");
     } else {
-        cell.classList.remove("Empty-cell", "visited", "path", "fast-visited", "fast-path");
+        cell.classList.remove("Empty-cell", "visited", "path", "fast-visited", "fast-path", "wall", "weight");
         cell.classList.add(classs);
     }
     // console.log(cell.classList);

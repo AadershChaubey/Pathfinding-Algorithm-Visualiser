@@ -74,14 +74,9 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
         return;
    }
     let miliSec = 0;
-    if(Array.length <= 2){
-        resetButtons()
-        return;
-    }
+    
     let i = 1;
-    let n = 0;
-    if(wannaPath)n = Array.length - 2
-    else n = Array.length - 1;
+    let n = Array.length - 1;
     const AnimateSearchTime =  setInterval(() => {
         if(i >= n){
             clearInterval(AnimateSearchTime)
@@ -92,11 +87,13 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                 resetButtons()
             }
         }
-        if(Array[i].classList.contains("weight")){
-            Array[i].classList.add("visited-weight")
-        }else {
-            Array[i].classList.remove("Empty-cell");
-            Array[i].classList.add("visited")
+        if(Array[i] != startPoint && Array[i] != endPoint){
+            if(Array[i].classList.contains("weight")){
+                Array[i].classList.add("visited-weight")
+            }else {
+                Array[i].classList.remove("Empty-cell");
+                Array[i].classList.add("visited")
+            }
         }
         i++;
     }, miliSec);
