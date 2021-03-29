@@ -1,4 +1,6 @@
 var screenActivity = true;
+var instantPath = false;
+var usedBoard = false;
 // digning grid
 const body = document.querySelector("body");
 const widthOfCell = 25;
@@ -38,7 +40,7 @@ endingPoint.classList.add("end");
 var startMouseDown = false;
 var startPoint = document.querySelector(".start");
 startPoint.addEventListener("mousedown", startPointMouseDownFunction)
-var previousStratClass = null;
+var previousStratClass = "Empty-cell";
 function startPointMouseDownFunction(){
     console.log(startPoint);
     startMouseDown = true;
@@ -57,6 +59,11 @@ cellMatrix.forEach((row) => {
                 startPoint.classList.remove(previousStratClass)
                 startPoint.classList.add("start");
                 startPoint.addEventListener("mousedown", startPointMouseDownFunction)
+
+                if(usedBoard){
+                    instantPath = true;
+                    startSearch();
+                }
             }
         });
     });
@@ -86,6 +93,11 @@ cellMatrix.forEach((row) => {
                 endPoint.classList.remove(previousEndClass);
                 endPoint.classList.add("end");
                 endPoint.addEventListener("mousedown", endPointMouseDownFunction)
+
+                if(usedBoard){
+                    instantPath = true;
+                    startSearch();
+                }
             }
         });
     });
@@ -153,13 +165,15 @@ cellMatrix.forEach((row) => {
     });
 });
 
+
+
 function changeCellColor(cell, classs) {
     // console.log(cell.classList);
     if(cell.classList.contains(classs)){
         cell.classList.remove(classs);
         cell.classList.add("Empty-cell");
     } else {
-        cell.classList.remove("Empty-cell", "visited", "path");
+        cell.classList.remove("Empty-cell", "visited", "path", "fast-visited", "fast-path");
         cell.classList.add(classs);
     }
     // console.log(cell.classList);

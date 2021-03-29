@@ -58,6 +58,14 @@ body {
   /* .3s */
 }
 
+.fast-visited {
+  background-color: rgb(245, 108, 245);
+  border: rgb(219, 144, 203) 0.5px solid;
+}
+.fast-path {
+  background: rgb(230, 230, 84);
+}
+
 .algorithms {
   display: inline-flex;
   align-items: center;

@@ -70,7 +70,7 @@ function Djkstra(){
         }
         if(found){
             console.log("mill gaya" + " Dijkstras")
-            vistedAnimation.push([x1, y1])
+            vistedAnimation.push(cellMatrix[x1][y1])
             AnimateSearch(vistedAnimation, parentMatrix, [x1, y1], true);
             return;
         }

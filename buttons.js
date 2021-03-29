@@ -4,24 +4,34 @@ const algoList = document.querySelector(".algo-list");
 const choosenAlgo = chooseAlgo.querySelector("p")
 
 clearButton.addEventListener("click", ()=>{
+    usedBoard = false;
+    instantPath = false;
     clear("wall");
     clear("visited")
     clear("path")
     clear("weight")
     clear("visited-weight")
-    previousStratClass = null;
-    previousEndClass = null;
+    clear("fast-visited")
+    clear("fast-path")
+    previousStratClass = "Empty-cell";
+    previousEndClass = "Empty-cell";
 } )
 
 
 const findPathButton = document.querySelector(".find-path");
-findPathButton.addEventListener("click", startSearch)
+findPathButton.addEventListener("click", ()=>{
+    findPathButton.disabled = true;
+    clearButton.disabled = true;
+    screenActivity = false;
+    usedBoard = true;
+    startSearch()
+})
 
 function clear(classes){
     cellMatrix.forEach(rows=>{
         rows.forEach(cell=>{
             if(cell.classList.contains(classes)){
-                cell.classList.remove(cell.classList[0]);
+                cell.classList.remove(classes)
                 cell.classList.add("Empty-cell")
             }
         })
@@ -29,11 +39,11 @@ function clear(classes){
 }
 
 function startSearch(){
+    console.log("hey")
     clear("visited")
     clear("path")
-    findPathButton.disabled = true;
-    clearButton.disabled = true;
-    screenActivity = false;
+    clear("fast-visited")
+    clear("fast-path")
     let text = chooseAlgo.innerText;
     if(text == "BFS")bfs();
     else if(text == "Dijkstra's") Djkstra();

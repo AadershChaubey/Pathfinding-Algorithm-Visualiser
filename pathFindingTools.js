@@ -56,9 +56,7 @@ function AnimatePath(path){
     let i = path.length - 1;
     const animate = setInterval(() => {
         if(i < 0){
-            findPathButton.disabled = false;
-            clearButton.disabled = false;
-            screenActivity = true;
+            resetButtons()
             clearInterval(animate);
             return;
         }
@@ -71,12 +69,13 @@ function AnimatePath(path){
 
 
 function AnimateSearch(Array, parent, [a, b], wannaPath){
-   
+    if(instantPath){
+        onTime(Array, parent, [a, b], wannaPath);
+        return;
+   }
     let miliSec = 0;
     if(Array.length <= 2){
-        findPathButton.disabled = false;
-        clearButton.disabled = false;
-        screenActivity = true;
+        resetButtons()
         return;
     }
     let i = 1;
@@ -90,9 +89,7 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                 let path = getThePath(parent, [a, b]);
                 AnimatePath(path);
             }else{
-                findPathButton.disabled = false;
-                clearButton.disabled = false;
-                screenActivity = true;
+                resetButtons()
             }
         }
         if(Array[i].classList.contains("weight")){
@@ -116,4 +113,31 @@ function createWeightedArray(){
         Array.push(rows);
     }
     return Array;
+}
+
+function onTime(vistedAnimation, parent, [a, b], wannaPath){
+    vistedAnimation.forEach((cell)=>{
+        if(cell.classList == undefined)console.log("ye rha", cell)
+        if(cell == undefined)console.log("ye rha cell", cell)
+        if(cell != startPoint && cell != endPoint){
+            cell.classList.remove("Empty-cell")
+            cell.classList.remove("visited")
+            cell.classList.add("fast-visited")
+        }
+    })
+
+    if(wannaPath){
+        const path = getThePath(parent, [a, b])
+        path.forEach((cell)=>{
+            cell.classList.remove("fast-visited")
+            cell.classList.add("fast-path")
+        })
+    }
+    resetButtons()
+}
+
+function resetButtons(){
+    findPathButton.disabled = false;
+    clearButton.disabled = false;
+    screenActivity = true;
 }
