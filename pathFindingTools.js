@@ -23,15 +23,9 @@ function createVisitedArray(){
     return visited;
 }
 
-function createParentArray(){
+function create2DArray(){
     const parent = [];
-    for(let i = 0; i <= numbersOfRows; i++){
-        const parentRows = [];
-        for(let j = 0; j <= numberOfCols; j++){
-            parentRows.push(null);
-        }
-        parent.push(parentRows)
-    }
+    for(let i = 0; i <= numbersOfRows; i++)parent.push([])
     return parent;
 }
 
@@ -53,10 +47,9 @@ function getThePath(parent, endCordinate){
 const pauseButton = document.querySelector(".pause");
 const pauseIcon = document.querySelector(".play-icon");
 pauseButton.disabled = true;
-var AnimateSearchTime = 0;
+var AnimateSearchTimer = 0;
 var timer = 0;
 function AnimatePath(path){
-    console.log(path.length);
     let miliSec = 0;
     let i = path.length - 1;
     const animate = setInterval(() => {
@@ -85,16 +78,12 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
     }
     let i = 1;
     let n = 0;
-    if(wannaPath)n = Array.length - 2
-    else n = Array.length - 1;
+    n = Array.length - 1;
     timer =  function(){
-        AnimateSearchTime =  setInterval(() => {
-            console.log("set",i);
-            console.log("AnimateSearchTime Running", AnimateSearchTime)
+        AnimateSearchTimer =  setInterval(() => {
             if(i >= n){
-                clearInterval(AnimateSearchTime)
+                clearInterval(AnimateSearchTimer)
                 if(wannaPath){
-                    console.log("ye ye ye")
                     let path = getThePath(parent, [a, b]);
                     AnimatePath(path);
                     pauseButton.disabled = true;
@@ -102,12 +91,13 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                     resetButtons()
                 }
             }
-            if(Array[i] == undefined)console.log(i)
-            if(Array[i].classList.contains("weight")){
-                Array[i].classList.add("visited-weight")
-            }else {
-                Array[i].classList.remove("Empty-cell");
-                Array[i].classList.add("visited")
+            if(Array[i] != startPoint && Array[i] != endPoint){
+                if(Array[i].classList.contains("weight")){
+                    Array[i].classList.add("visited-weight")
+                }else {
+                    Array[i].classList.remove("Empty-cell");
+                    Array[i].classList.add("visited")
+                }
             }
             i++;
         }, miliSec);
@@ -117,12 +107,12 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
 }
 
 
-function createWeightedArray(){
+function createWeightedArray(a){
     const Array = [];
     for(let i = 0; i < numbersOfRows; i++){
         const rows = [];
         for(let j = 0;j < numberOfCols; j++){
-            rows.push(Infinity);
+            rows.push(a);
         }
         Array.push(rows);
     }
@@ -163,13 +153,12 @@ let paused = false;
 
 pauseButton.addEventListener("click", ()=>{
     if(!paused){
-        console.log("AnimateSearchTime deleted", AnimateSearchTime)
-        clearInterval(AnimateSearchTime);
+        clearInterval(AnimateSearchTimer);
         resetButtons();
+        screenActivity = false;
         paused = true;
         changePause()
     }else{
-        console.log("timer button")
         stopButtons();
         timer();
         paused = false;

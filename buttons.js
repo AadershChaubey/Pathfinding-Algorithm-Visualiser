@@ -5,6 +5,7 @@ const choosenAlgo = chooseAlgo.querySelector("p")
 
 
 clearButton.addEventListener("click", ()=>{
+    screenActivity = true;
     usedBoard = false;
     instantPath = false;
     pauseButton.disabled = true;
@@ -42,6 +43,7 @@ function clear(classes){
 }
 
 function startSearch(){
+    changeVisitedWeightToWeight()
     clear("visited")
     clear("path")
     clear("fast-visited")
@@ -49,6 +51,7 @@ function startSearch(){
     let text = chooseAlgo.innerText;
     if(text == "BFS")bfs();
     else if(text == "Dijkstra's") Djkstra();
+    else if(text == "A*")AStar();
     else resetButtons()
 }
 
@@ -85,3 +88,13 @@ function algoListDisappear(){
     style.zIndex = -1;
 }
 
+function changeVisitedWeightToWeight(){
+    cellMatrix.forEach(rows=>{
+        rows.forEach(cell=>{
+            if(cell.classList.contains("visited-weight")){
+                cell.classList.remove("visited-weight")
+                cell.classList.add("weight")
+            }
+        })
+    })
+}

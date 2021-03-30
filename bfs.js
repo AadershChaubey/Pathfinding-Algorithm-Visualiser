@@ -5,12 +5,12 @@ function bfs(){
     const q = [];
     q.push(arr);
     const visited = createVisitedArray();
-    const parentMatrix = createParentArray();
+    const parentMatrix = create2DArray();
     const parentArray = [];
     parentArray.push(-1);
     const vistedAnimation = [];
-    startPoint.classList.remove("wall");
-    endPoint.classList.remove("wall");
+    // startPoint.classList.remove("wall");
+    // endPoint.classList.remove("wall");
     
     while(q.length != 0){
         let curr = q.shift();
