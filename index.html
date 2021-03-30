@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
     <link href="style.css" rel="stylesheet" />
     <script
@@ -12,8 +17,9 @@
     ></script>
   </head>
   <body>
-    <div class="buttons">
-      <div class="algo-container">
+    <h1 class="head">PathFinding Visualiser</h1>
+    <nav>
+      <button class="algo-container">
         <div class="algorithms">
           <p>Algorithms</p>
           <i class="fas fa-chevron-down"></i>
@@ -23,10 +29,11 @@
           <li>Breath First Search</li>
           <li>Dijkstra's</li>
         </ul>
-      </div>
+      </button>
       <button class="find-path btn">Find Path</button>
       <button class="clear btn">Clear</button>
-    </div>
+      <button class="pause"><i class="fas play-icon fa-play"></i></button>
+    </nav>
     <table></table>
     <script src="display.js"></script>
     <script src="pathFindingTools.js"></script>

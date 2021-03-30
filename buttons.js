@@ -3,9 +3,13 @@ const chooseAlgo = document.querySelector(".algorithms");
 const algoList = document.querySelector(".algo-list");
 const choosenAlgo = chooseAlgo.querySelector("p")
 
+
 clearButton.addEventListener("click", ()=>{
     usedBoard = false;
     instantPath = false;
+    pauseButton.disabled = true;
+    paused = false;
+    changePause()
     clear("wall");
     clear("visited")
     clear("path")
@@ -20,10 +24,9 @@ clearButton.addEventListener("click", ()=>{
 
 const findPathButton = document.querySelector(".find-path");
 findPathButton.addEventListener("click", ()=>{
-    findPathButton.disabled = true;
-    clearButton.disabled = true;
-    screenActivity = false;
-    usedBoard = true;
+    paused = false;
+    changePause()
+    stopButtons();
     startSearch()
 })
 
@@ -39,7 +42,6 @@ function clear(classes){
 }
 
 function startSearch(){
-    console.log("hey")
     clear("visited")
     clear("path")
     clear("fast-visited")
@@ -47,11 +49,7 @@ function startSearch(){
     let text = chooseAlgo.innerText;
     if(text == "BFS")bfs();
     else if(text == "Dijkstra's") Djkstra();
-    else{
-        findPathButton.disabled = false;
-        clearButton.disabled = false;
-        screenActivity = true;
-    }
+    else resetButtons()
 }
 
 
@@ -79,6 +77,7 @@ algoListLi.forEach((element)=>{
         algoListDisappear();
     })
 })
+
 
 function algoListDisappear(){
     let style = algoList.style;

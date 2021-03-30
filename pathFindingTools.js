@@ -50,6 +50,11 @@ function getThePath(parent, endCordinate){
     return path;
 }
 
+const pauseButton = document.querySelector(".pause");
+const pauseIcon = document.querySelector(".play-icon");
+pauseButton.disabled = true;
+var AnimateSearchTime = 0;
+var timer = 0;
 function AnimatePath(path){
     console.log(path.length);
     let miliSec = 0;
@@ -67,36 +72,48 @@ function AnimatePath(path){
     }, miliSec);
 }
 
-
 function AnimateSearch(Array, parent, [a, b], wannaPath){
     if(instantPath){
         onTime(Array, parent, [a, b], wannaPath);
         return;
    }
+   pauseButton.disabled = false;
     let miliSec = 0;
-    
+    if(Array.length <= 2){
+        resetButtons()
+        return;
+    }
     let i = 1;
-    let n = Array.length - 1;
-    const AnimateSearchTime =  setInterval(() => {
-        if(i >= n){
-            clearInterval(AnimateSearchTime)
-            if(wannaPath){
-                let path = getThePath(parent, [a, b]);
-                AnimatePath(path);
-            }else{
-                resetButtons()
+    let n = 0;
+    if(wannaPath)n = Array.length - 2
+    else n = Array.length - 1;
+    timer =  function(){
+        AnimateSearchTime =  setInterval(() => {
+            console.log("set",i);
+            console.log("AnimateSearchTime Running", AnimateSearchTime)
+            if(i >= n){
+                clearInterval(AnimateSearchTime)
+                if(wannaPath){
+                    console.log("ye ye ye")
+                    let path = getThePath(parent, [a, b]);
+                    AnimatePath(path);
+                    pauseButton.disabled = true;
+                }else{
+                    resetButtons()
+                }
             }
-        }
-        if(Array[i] != startPoint && Array[i] != endPoint){
+            if(Array[i] == undefined)console.log(i)
             if(Array[i].classList.contains("weight")){
                 Array[i].classList.add("visited-weight")
             }else {
                 Array[i].classList.remove("Empty-cell");
                 Array[i].classList.add("visited")
             }
-        }
-        i++;
-    }, miliSec);
+            i++;
+        }, miliSec);
+    }
+    timer();
+    return;
 }
 
 
@@ -114,8 +131,6 @@ function createWeightedArray(){
 
 function onTime(vistedAnimation, parent, [a, b], wannaPath){
     vistedAnimation.forEach((cell)=>{
-        if(cell.classList == undefined)console.log("ye rha", cell)
-        if(cell == undefined)console.log("ye rha cell", cell)
         if(cell != startPoint && cell != endPoint){
             cell.classList.remove("Empty-cell")
             cell.classList.remove("visited")
@@ -137,4 +152,51 @@ function resetButtons(){
     findPathButton.disabled = false;
     clearButton.disabled = false;
     screenActivity = true;
+    findPathButton.classList.add("btn")
+    findPathButton.classList.remove("btn-disable");
+    clearButton.classList.add("btn")
+    clearButton.classList.remove("btn-disable");
+}
+
+let paused = false;
+
+
+pauseButton.addEventListener("click", ()=>{
+    if(!paused){
+        console.log("AnimateSearchTime deleted", AnimateSearchTime)
+        clearInterval(AnimateSearchTime);
+        resetButtons();
+        paused = true;
+        changePause()
+    }else{
+        console.log("timer button")
+        stopButtons();
+        timer();
+        paused = false;
+        changePause()
+    }
+})
+
+function changePause(){
+    if(paused){
+        pauseIcon.classList.remove("fa-pause")
+        pauseIcon.classList.add("fa-play")
+    }else{
+        pauseIcon.classList.remove("fa-play")
+        pauseIcon.classList.add("fa-pause")
+    }
+}
+
+
+function stopButtons(){
+    findPathButton.disabled = true;
+    clearButton.disabled = true;
+    screenActivity = false;
+    usedBoard =true;
+    instantPath = false;
+    findPathButton.classList.remove("btn")
+    findPathButton.classList.add("btn-disable");
+    clearButton.classList.remove("btn")
+    clearButton.classList.add("btn-disable");
+    
 }

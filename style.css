@@ -9,9 +9,23 @@ body {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  background-color: rgb(240, 236, 180);
+}
+h1 {
+  background: rgb(74, 74, 151);
+  color: rgb(253, 234, 234);
+  padding: 10px 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  font-family: "Josefin Sans", sans-serif;
+  align-self: flex-start;
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  box-shadow: 0px 0px 2px 0px rgb(58, 59, 70);
 }
 .Empty-cell {
-  background: white;
+  background: rgb(246, 243, 198);
 }
 
 .wall {
@@ -66,11 +80,14 @@ body {
   background: rgb(230, 230, 84);
 }
 
+.algo-container {
+  all: unset;
+  display: block;
+}
 .algorithms {
   display: inline-flex;
   align-items: center;
   justify-content: space-around;
-  width: 150px;
   background: rgb(118, 118, 223);
   padding: 10px 30px;
   border-radius: 5px;
@@ -78,6 +95,8 @@ body {
   cursor: pointer;
   position: relative;
   box-shadow: 0px 0px 3px 0px rgb(65, 63, 63);
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
 }
 
 .algorithms p {
@@ -86,6 +105,14 @@ body {
 
 .algorithms:hover {
   background: rgb(95, 95, 231);
+}
+
+.pause {
+  all: unset;
+  margin: 0 auto;
+  font-size: 25px;
+  color: rgb(23, 23, 255);
+  cursor: pointer;
 }
 
 td {
@@ -102,14 +129,16 @@ table {
   border-collapse: collapse;
   width: 80%;
   height: 90%;
+  box-shadow: 0px 0px 7px -2px rgb(82, 76, 76);
 }
 
 /* buttons */
-.buttons {
+nav {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 80%;
+  position: relative;
 }
 .btn {
   all: unset;
@@ -119,10 +148,30 @@ table {
   color: rgb(245, 224, 224);
   cursor: pointer;
   box-shadow: 0px 0px 3px 0px rgb(65, 63, 63);
+  text-align: center;
+  width: 50%;
+  font-family: "Josefin Sans", sans-serif;
+  width: 100px;
+  font-weight: 600;
 }
 
 .btn:hover {
   background: rgb(95, 95, 231);
+}
+
+.btn-disable {
+  all: unset;
+  background: rgb(143, 143, 255);
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: rgb(245, 224, 224);
+  cursor: pointer;
+  box-shadow: 0px 0px 3px 0px rgb(65, 63, 63);
+  text-align: center;
+  width: 50%;
+  font-family: "Josefin Sans", sans-serif;
+  width: 100px;
+  font-weight: 600;
 }
 
 .algo-list {
@@ -141,18 +190,19 @@ table {
   position: absolute;
   transform: scale3d(1, 0, 1);
   transform-origin: top;
-  box-shadow: 0px 0px 2px 0px rgb(65, 63, 63);
+  box-shadow: 0px 0px 2px 0px rgb(197, 192, 192);
   transition: transform 0.3s;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 .algo-list li:after {
   content: "";
-  height: 0.5px;
-  background: rgb(44, 41, 41);
+  height: 02px;
+  background: rgb(42, 33, 33);
   display: block;
   width: 0;
   margin: auto;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .algo-list li:hover::after {
