@@ -92,12 +92,8 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                 }
             }
             if(Array[i] != startPoint && Array[i] != endPoint){
-                if(Array[i].classList.contains("weight")){
-                    Array[i].classList.add("visited-weight")
-                }else {
-                    Array[i].classList.remove("Empty-cell");
-                    Array[i].classList.add("visited")
-                }
+                Array[i].classList.remove("Empty-cell");
+                Array[i].classList.add("visited")
             }
             i++;
         }, miliSec);

@@ -15,7 +15,6 @@ clearButton.addEventListener("click", ()=>{
     clear("visited")
     clear("path")
     clear("weight")
-    clear("visited-weight")
     clear("fast-visited")
     clear("fast-path")
     previousStratClass = "Empty-cell";
@@ -43,7 +42,6 @@ function clear(classes){
 }
 
 function startSearch(){
-    changeVisitedWeightToWeight()
     clear("visited")
     clear("path")
     clear("fast-visited")
@@ -88,13 +86,3 @@ function algoListDisappear(){
     style.zIndex = -1;
 }
 
-function changeVisitedWeightToWeight(){
-    cellMatrix.forEach(rows=>{
-        rows.forEach(cell=>{
-            if(cell.classList.contains("visited-weight")){
-                cell.classList.remove("visited-weight")
-                cell.classList.add("weight")
-            }
-        })
-    })
-}

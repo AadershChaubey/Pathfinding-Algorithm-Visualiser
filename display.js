@@ -74,7 +74,7 @@ cellMatrix.forEach((row) => {
 var endMouseDown = false;
 var endPoint = document.querySelector(".end");
 endPoint.addEventListener("mousedown", endPointMouseDownFunction)
-var previousEndClass = null;
+var previousEndClass = "Empty-cell";
 function endPointMouseDownFunction(){
     console.log(endPoint);
     endMouseDown = true;
