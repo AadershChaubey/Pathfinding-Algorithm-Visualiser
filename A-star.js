@@ -9,7 +9,7 @@ function AStar(){
     const smallestWeight = [];
     const startPointCordinate = getCordinate(startPoint);
     const endPointCordinate = getCordinate(endPoint);
-    smallestWeight.push([0, startPointCordinate]);  // [fn, cordinates]  fn = gn + hn
+    smallestWeight.push([0, startPointCordinate]); 
     parentMatrix[startPointCordinate[0]] [startPointCordinate[1]] = -1;
 
     const ParentG = create2DArray();
@@ -18,10 +18,6 @@ function AStar(){
         smallestWeight.sort((a, b)=>{
             return a[0] - b[0];
         })
-        // smallestWeight.forEach((e)=>{
-        //     console.log(cellMatrix[e[1][0]][e[1][1]], e[0])
-        // })
-        //  console.log("----------------------------------------------------------------------------")
         let curr = smallestWeight.shift();
         let points = curr[0];
         let position = curr[1];
@@ -64,10 +60,7 @@ function AStar(){
                 let gValue = gValueCurr;
                 let hValue = modOf(endPointCordinate[0] - x1)  + modOf(endPointCordinate[1] - y1)
                 if(node.classList.contains("weight"))gValue += 10;
-                let pointsTemp = gValue + hValue + 1;   // added for gValue
-                // console.log(hValue, gValue, fn[x1][y1], pointsTemp, node)
-                // if(pointsTemp == NaN)console.log(hValue, gValue)
-                
+                let pointsTemp = gValue + hValue + 1;   
                 if(fn[x1][y1] > pointsTemp){
                     fn[x1][y1] = pointsTemp;
                     parentMatrix[x1][y1] = [x, y];

@@ -71,7 +71,7 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
         return;
    }
    pauseButton.disabled = false;
-    let miliSec = 0;
+    let miliSec = 20;
     if(Array.length <= 2){
         resetButtons()
         return;
@@ -91,9 +91,15 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                     resetButtons()
                 }
             }
-            if(Array[i] != startPoint && Array[i] != endPoint){
-                Array[i].classList.remove("Empty-cell");
-                Array[i].classList.add("visited")
+            if(Array[i] != startPoint && Array[i] != endPoint && Array[i] != undefined){
+                if(Array[i].classList.contains("visited")){
+                    Array[i].classList.remove("visited")
+                    void Array[i].offsetWidth;
+                    Array[i].classList.add("visited")
+                }else{
+                    Array[i].classList.remove("Empty-cell");
+                    Array[i].classList.add("visited")
+                }
             }
             i++;
         }, miliSec);

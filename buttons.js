@@ -49,8 +49,13 @@ function startSearch(){
     let text = chooseAlgo.innerText;
     if(text == "BFS")bfs();
     else if(text == "Dijkstra's") Djkstra();
-    else if(text == "A*")AStar();
-    else resetButtons()
+    else if(text == "A* Search")AStar();
+    else if(text == "DFS")dfs();
+    else{
+        findPathButton.innerText = "Choose Algorithm"
+        findPathButton.style.color = "#f39999";
+        resetButtons()
+    } 
 }
 
 
@@ -73,10 +78,19 @@ algoListLi.forEach((element)=>{
     element.addEventListener("click", ()=>{
         const text = element.innerText;
         if(text == "Breath First Search")chooseAlgo.querySelector("p").innerText ="BFS";
+        else if(text == "Depth First Search")chooseAlgo.querySelector("p").innerText ="DFS";
         else choosenAlgo.innerText = text;
-        
+        findPathButton.innerText = "Find Path"
+        findPathButton.style.color = "rgb(245, 224, 224)";
         algoListDisappear();
     })
+})
+
+const nav = document.querySelector("nav");
+body.addEventListener("click", ()=>{
+    const list =  window.event.srcElement.classList;
+    if(list.contains("fa-chevron-down") || list.contains("algo-p") || list.contains("algorithms"))return;
+    algoListDisappear()
 })
 
 
