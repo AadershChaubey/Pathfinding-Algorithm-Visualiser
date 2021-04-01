@@ -26,12 +26,13 @@ cellMatrix.push(cellRow);
 
       
 // assigning starting point and ending point
+console.log(numbersOfRows / 3, numberOfCols / 4)
+const startingPoint = cellMatrix[(numbersOfRows / 2).toFixed(0)][(numberOfCols / 4).toFixed(0)]
 
-const startingPoint = cellMatrix[10][10]
 startingPoint.classList.remove("Empty-cell");
 startingPoint.classList.add("start");
 
-const endingPoint = cellMatrix[10][30]
+const endingPoint = cellMatrix[(numbersOfRows / 2).toFixed(0)][(numberOfCols / (1.4)).toFixed(0)]
 endingPoint.classList.remove("Empty-cell");
 endingPoint.classList.add("end");
 
