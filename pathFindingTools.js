@@ -1,3 +1,8 @@
+const pauseButton = document.querySelector(".pause");
+const pauseIcon = document.querySelector(".play-icon");
+pauseButton.disabled = true;
+changeClassPuaseButton();
+
 function getCordinate(element){
     for(let i = 0; i < numbersOfRows; i++){
         for(let j = 0; j < numberOfCols; j++){
@@ -35,7 +40,7 @@ function getThePath(parent, endCordinate){
     let x = parseInt(currCordinate[0])
     let y = parseInt(currCordinate[1])
     while(parent[x][y] != -1){
-        path.push(cellMatrix[parseInt(parent[x][y][0])][parseInt(parent[x][y][1])])
+        path.push([parseInt(parent[x][y][0]), parseInt(parent[x][y][1])])
         currCordinate = parent[x][y];
         x = parseInt(currCordinate[0])
         y = parseInt(currCordinate[1])
@@ -44,9 +49,7 @@ function getThePath(parent, endCordinate){
     return path;
 }
 
-const pauseButton = document.querySelector(".pause");
-const pauseIcon = document.querySelector(".play-icon");
-pauseButton.disabled = true;
+
 var AnimateSearchTimer = 0;
 var timer = 0;
 function AnimatePath(path){
@@ -58,7 +61,10 @@ function AnimatePath(path){
             clearInterval(animate);
             return;
         }
-        let element = path[i];
+        let Cordinates = path[i];
+        let x = Cordinates[0];
+        let y = Cordinates[1];
+        element = cellMatrix[x][y]
         element.classList.remove("visited");
         element.classList.add("path");
         i--;
@@ -71,6 +77,7 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
         return;
    }
    pauseButton.disabled = false;
+   changeClassPuaseButton();
     let miliSec = 20;
     if(Array.length <= 2){
         resetButtons()
@@ -87,6 +94,7 @@ function AnimateSearch(Array, parent, [a, b], wannaPath){
                     let path = getThePath(parent, [a, b]);
                     AnimatePath(path);
                     pauseButton.disabled = true;
+                    changeClassPuaseButton();
                 }else{
                     resetButtons()
                 }
@@ -129,13 +137,17 @@ function onTime(vistedAnimation, parent, [a, b], wannaPath){
             cell.classList.add("fast-visited")
         }
     })
-
     if(wannaPath){
         const path = getThePath(parent, [a, b])
-        path.forEach((cell)=>{
+        let n = path.length;
+        for(let i = n - 1; i >= 0; i--){
+            let cordinates = path[i]
+            let x = cordinates[0]
+            let y = cordinates[1]
+            let cell = cellMatrix[x][y]
             cell.classList.remove("fast-visited")
             cell.classList.add("fast-path")
-        })
+        }
     }
     resetButtons()
 }
@@ -190,4 +202,14 @@ function stopButtons(){
     clearButton.classList.remove("btn")
     clearButton.classList.add("btn-disable");
     
+}
+
+function changeClassPuaseButton(){
+    if(pauseButton.disabled === true){
+        pauseButton.classList.remove("pause")
+        pauseButton.classList.add("pause-disable")
+    }else{
+        pauseButton.classList.remove("pause-disable")
+        pauseButton.classList.add("pause")
+    }
 }

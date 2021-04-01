@@ -1,25 +1,55 @@
-const clearButton = document.querySelector(".clear");
+const clearButton = document.querySelector(".clear-btn");
 const chooseAlgo = document.querySelector(".algorithms");
 const algoList = document.querySelector(".algo-list");
+const clearList = document.querySelector(".clear-list");
 const choosenAlgo = chooseAlgo.querySelector("p")
 
 
 clearButton.addEventListener("click", ()=>{
-    screenActivity = true;
-    usedBoard = false;
-    instantPath = false;
-    pauseButton.disabled = true;
-    paused = false;
-    changePause()
-    clear("wall");
-    clear("visited")
-    clear("path")
-    clear("weight")
-    clear("fast-visited")
-    clear("fast-path")
-    previousStratClass = "Empty-cell";
-    previousEndClass = "Empty-cell";
+    
+    
 } )
+// clear Button
+clearButton.addEventListener("click", ()=>{
+    let style = clearList.style;
+    if(style.transform != "scale3d(1, 1, 1)"){
+        style.transform = "scale3d(1, 1, 1)";
+        style.zIndex = 1;
+    }
+    else {
+        style.transform = "scale3d(1, 0, 1)";
+        style.zIndex = -1;
+    }
+})
+
+// clear Button list-li
+const clearListLi = clearList.querySelectorAll(".clear-li");
+clearListLi.forEach((element)=>{
+    element.addEventListener("click", ()=>{
+        if(element === document.querySelector("#clear-all")){
+        clear("wall");
+        clear("visited")
+        clear("path")
+        clear("weight")
+        clear("fast-visited")
+        clear("fast-path")
+        }else if(element === document.querySelector("#clear-wall"))clear("wall")
+        else if(element === document.querySelector("#clear-weight"))clear("weight")
+        else {
+            clear("visited")
+            clear("path")
+            clear("fast-visited")
+            clear("fast-path")
+        }
+        
+        screenActivity = true;
+        usedBoard = false;
+        instantPath = false;
+        pauseButton.disabled = true;
+        paused = false;
+        changeClassPuaseButton();
+    })
+})
 
 
 const findPathButton = document.querySelector(".find-path");
@@ -36,6 +66,10 @@ function clear(classes){
             if(cell.classList.contains(classes)){
                 cell.classList.remove(classes)
                 cell.classList.add("Empty-cell")
+                // if(classes == "path" || classes == "fast-path"){
+                //     let pathLine = cell.querySelector(".pathLineContainer");
+                //     if(pathLine !== null)pathLine.remove()
+                // }
             }
         })
     })
@@ -72,7 +106,7 @@ chooseAlgo.addEventListener("click", ()=>{
     }
 })
 
-const algoListLi = algoList.querySelectorAll("li");
+const algoListLi = algoList.querySelectorAll(".algo-li");
 
 algoListLi.forEach((element)=>{
     element.addEventListener("click", ()=>{

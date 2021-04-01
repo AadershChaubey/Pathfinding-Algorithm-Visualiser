@@ -127,13 +127,19 @@ body.addEventListener("keyup", (key)=>{
 })
 
 
+var allowMouseToMakeWall = true;
 cellMatrix.forEach((row) => {
     row.forEach((cell) => {
         let cal = cell;
         cell.addEventListener("mouseover", () => {
-        if (screenActivity && containerMouseDown && !containerWdown && cell != startPoint && cell != endPoint) {
+        if (allowMouseToMakeWall && screenActivity && containerMouseDown && !containerWdown && cell != startPoint && cell != endPoint) {
             changeCellColor(cal, "wall");
+            allowMouseToMakeWall = false;
         }
+        });
+
+        cell.addEventListener("mouseout", () => {
+            allowMouseToMakeWall = true;
         });
 
         cell.addEventListener("click", () => {

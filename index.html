@@ -25,15 +25,33 @@
           <i class="fas fa-chevron-down"></i>
         </div>
 
-        <ul class="algo-list">
-          <li>Breath First Search</li>
-          <li>Dijkstra's</li>
-          <li>A* Search</li>
-          <li>Depth First Search</li>
+        <ul class="algo-list list">
+          <li class="algo-li">Breath First Search</li>
+          <li class="algo-li">Dijkstra's</li>
+          <li class="algo-li">A* Search</li>
+          <li class="algo-li">Depth First Search</li>
         </ul>
       </button>
       <button class="find-path btn">Find Path</button>
-      <button class="clear btn">Clear</button>
+      <button class="btn clear-btn">
+        Clear <i class="fas fa-chevron-down"></i>
+        <ul class="list clear-list">
+          <li id="clear-all" class="clear-li">Clear All</li>
+          <li id="clear-wall" class="clear-li">
+            <div class="wall list-icon space"></div>
+            Wall
+          </li>
+          <li id="clear-weight" class="clear-li">
+            <div class="weight list-icon space"></div>
+            Weight
+          </li>
+          <li id="clear-visited-path" class="clear-li">
+            <div class="path list-icon"></div>
+            <div class="visited list-icon"></div>
+            Visited, Path
+          </li>
+        </ul>
+      </button>
       <button class="pause"><i class="fas play-icon fa-play"></i></button>
     </nav>
     <table></table>
