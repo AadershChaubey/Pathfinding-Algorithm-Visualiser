@@ -8,4 +8,6 @@
 
 ### I will be greatfull if you try it [Google Chorme is storgly recomended](https://aadershchaubey.github.io/Pathfinding-Algorithm-Visualiser/main/index.html)
 
+#### Inspired by Clement's [PathFinding Visualiser](https://github.com/clementmihailescu/Pathfinding-Visualizer)
+
 #### Made with HTML, CSS and JavaScript
