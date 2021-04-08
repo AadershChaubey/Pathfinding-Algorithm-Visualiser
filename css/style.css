@@ -36,10 +36,12 @@ h1 {
 }
 
 .weight {
-  background-image: url("image/weight-hanging-solid.svg");
-  border: none;
-  animation: wall-animation 0.1s;
-  /* .3s */
+  background-image: url("/image/weight.png");
+  animation: wall-animation 0.2s;
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 .start {
