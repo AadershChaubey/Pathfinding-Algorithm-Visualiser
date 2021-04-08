@@ -41,7 +41,8 @@ clearListLi.forEach((element)=>{
             clear("fast-visited")
             clear("fast-path")
         }
-        
+        previousStratClass = "Empty-cell";
+        previousEndClass = "Empty-cell";
         screenActivity = true;
         usedBoard = false;
         instantPath = false;
