@@ -10,7 +10,7 @@ const containerHieght = container.offsetHeight.toFixed(0);
 const numberOfCols = (containerWidth / widthOfCell).toFixed(0);
 const numbersOfRows = (containerHieght / widthOfCell).toFixed(0);
 const cellMatrix = [];                                // All the cels will be stored in this
-console.log(numbersOfRows, numberOfCols); 
+
 for (let i = 0; i < numbersOfRows; i++) {
 const row = document.createElement("tr");
 const cellRow = [];
@@ -26,7 +26,6 @@ cellMatrix.push(cellRow);
 
       
 // assigning starting point and ending point
-console.log(numbersOfRows / 3, numberOfCols / 4)
 const startingPoint = cellMatrix[(numbersOfRows / 2).toFixed(0)][(numberOfCols / 4).toFixed(0)]
 
 startingPoint.classList.remove("Empty-cell");
